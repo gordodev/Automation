@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 #Keep track of all job search contacts (emails/calls)
+#Data will be stored in flat file(CSV)
+#Data should be searchable and able to be changed
 
 import csv
 import time
