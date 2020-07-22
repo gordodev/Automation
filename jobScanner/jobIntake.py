@@ -57,16 +57,19 @@ def addRecord():
             if newRecordElement=='':
                 break                           #QA: Does this work? I THINK THIS IS REDUNDANT, SAME CODE ABOVE
         
-            newRecord.insert(0,newRecordElement)           #Add new record element to newRecord list
+            newRecord.insert(0,newRecordElement)                    #Add new record element to newRecord list
             print ('.')
 
         if newRecordElement=='':
             print ('\nNothing entered!\n')
             time.sleep(2)
         else:
-            print ('\nInserting new record: \n',newRecord,'\n') 
+            print ('\nInserting new record: \n',newRecord,'\n')
+            myDate=(datetime.today().strftime('%Y-%m-%d %H:%M'))
+            recordID=(datetime.today().strftime('%y%m%d%S'))       #QA: Future refactor to replace with numeric values. Just have to search records to figure what next record number should be.
+            newRecord.insert(0,myDate)
             time.sleep(2)
-            appendRecord(newRecord)                      #This new record append is now failing?
+            appendRecord(newRecord)                                #This new record append is now failing?
         clear()
 
 #=======================================================================
@@ -84,14 +87,16 @@ print('_________________________________________________________________________
 #MENU
 
 while True:
-    print ('CHOOSE OPTION BELOW:\n\n')
-    selection=input('New Record: A\nSearch Record: B\n')
+    print ('\nCHOOSE OPTION BELOW:\n\n')
+    selection=input('(A) Add new Record\n(B) Search existing Records\n')
 
     if selection=='A' or selection=='a':
         print ('\n***  Add new records  ***\n')
         addRecord()
-    elif selection=='b':
-        print ('You want search')
+    elif selection=='B' or selection=='b':
+        print ('\nHere are the existing records:\n')
+        readRecords()                                                           #Update records
+        print (existingRecords)                                                 #Print existing records
     elif selection=='':
         break
     else: 
