@@ -8,6 +8,10 @@ import csv
 import time
 from os import system
 
+from datetime import datetime
+
+print(datetime.today().strftime('%Y-%m-%d %H:%M'))
+myDate=(datetime.today().strftime('%Y-%m-%d %H:%M'))     #Date for data entry
 
 #Functions
 #--------------------------------------------------
@@ -25,8 +29,8 @@ def readRecords():
         reader = csv.reader(f)
         existingRecords = list(reader)
 
-###################                                 <<<WRITE NEW RECORD TO CSV FILE>>>
-def writeRecord(sourceRecord):
+###################                                 <<<APPEND NEW RECORD TO CSV FILE>>>
+def appendRecord(sourceRecord):
     print ('[Inserting new records]\n')
     time.sleep(0.8)
 
@@ -43,7 +47,8 @@ def addRecord():
         if newRecordElement=='':                           #Stop adding records if nothing entered
             break                               #QA: Does this work?
 
-        fields=['Name: ','Company: ','Number: ','NOTES: ']
+        #FULL SCHEMA: ['Name: ','Company: ','Number: ','NOTES: ','Salary: ','Date: ','Record #','Rating','Interview Count','Status']
+        fields=['Name: ','Company: ','Number: ','NOTES: ','Salary: ','Date: ','Record #: ','Rating: ','Interview Count: ','Status: ']
         #newRecordElement='start'
         for field in fields:
             if newRecordElement=='':                       #If nothing entered for any field, then break
@@ -61,7 +66,7 @@ def addRecord():
         else:
             print ('\nInserting new record: \n',newRecord,'\n') 
             time.sleep(2)
-            writeRecord(newRecord)                      #This new record inserting/append is now failing?
+            appendRecord(newRecord)                      #This new record append is now failing?
         clear()
 
 #=======================================================================
@@ -94,3 +99,10 @@ while True:
         continue
 
 print('Bye now!')
+
+#NOTES:
+'''
+Future upgrade; xcel support: https://www.youtube.com/watch?v=1Kcco6koC34
+
+
+'''
