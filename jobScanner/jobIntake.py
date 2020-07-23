@@ -20,7 +20,7 @@ def clear():
     _=system('clear')
 
 ##################                                  <<<READ RECORDS FROM CSV FILE & insert into existingRecords>>>
-def readRecords():
+def read_records():
     print ('[Loading existing records]\n')
     time.sleep(0.8)
 
@@ -30,7 +30,7 @@ def readRecords():
         existingRecords = list(reader)
 
 ###################                                 <<<APPEND NEW RECORD TO CSV FILE>>>
-def appendRecord(sourceRecord):
+def append_record(sourceRecord):
     print ('[Inserting new records]\n')
     time.sleep(0.8)
 
@@ -39,7 +39,7 @@ def appendRecord(sourceRecord):
         writer.writerow(sourceRecord)
 
 ################                                   <<<GET NEW RECORD FROM USER>>>
-def addRecord():
+def addrecord():
     newRecordElement='start'                               #Initializing newRecordElement var
     newRecord=[]                                           #Init newRecord list
 
@@ -78,7 +78,7 @@ def addRecord():
             recordID=(datetime.today().strftime('%y%m%d%S'))       #QA: Future refactor to replace with numeric values. Just have to search records to figure what next record number should be.
             newRecord.insert(0,myDate)
             time.sleep(2)
-            appendRecord(newRecord)                                #This new record append is now failing?
+            append_record(newRecord)                                #This new record append is now failing?
         clear()
 
 #=======================================================================
@@ -86,7 +86,7 @@ def addRecord():
 clear()
 #Read existing records into list
 
-readRecords()
+read_records()
 #records=records
 #PRINT LAST 5 RECORDS
 print('_____________________________________________________________________________________________________________\n\n',existingRecords[-5:],'\n____________________________________________________________________________________________________________\n')
@@ -101,10 +101,10 @@ while True:
 
     if selection=='A' or selection=='a':
         print ('\n***  Add new records  ***\n')
-        addRecord()
+        addrecord()
     elif selection=='B' or selection=='b':
         print ('\nHere are the existing records:\n')
-        readRecords()                                                           #Update records
+        read_records()                                                           #Update records
         print (existingRecords)                                                 #Print existing records
     elif selection=='':
         break
