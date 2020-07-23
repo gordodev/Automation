@@ -48,7 +48,16 @@ def addRecord():
             break                               #QA: Does this work?
 
         #FULL SCHEMA: ['Name: ','Company: ','Number: ','NOTES: ','Salary: ','Date: ','Record #','Rating','Interview Count','Status']
-        fields=['Name: ','Company: ','Number: ','NOTES: ','Salary: ','Date: ','Record #: ','Rating: ','Interview Count: ','Status: ']
+        '''
+        DESIGN NOTES: Pick a schema and stick to it. Perhaps include 5-6 custom fields for future use. So maybe do this:
+        fields=['','','','','','','','','','']
+
+        Then have a note with field numbers for refrence
+        When you loop through field names to insert values or whenever you insert values, use the designated index numbers
+        Maybe us an if statement that matches the field name with index number like; if name=='notes', then index=4. Then insert value into [4]
+
+        '''
+        fields=['Name: ','Company: ','Number: ','NOTES: ','Salary: ','Rating: ','Interview Count: ','Status: ']
         #newRecordElement='start'
         for field in fields:
             if newRecordElement=='':                       #If nothing entered for any field, then break
