@@ -48,6 +48,7 @@ def addrecord():
             break                               #QA: Does this work?
 
         #FULL SCHEMA: ['Name: ','Company: ','Number: ','NOTES: ','Salary: ','Date: ','Record #','Rating','Interview Count','Status']
+        #FULL SCHEMA: ['Date','Firm','Agency','Name','Rating','Type','Rate','Interview Count','Days since last contact','Status','Source','Notes']
         '''
         DESIGN NOTES: Pick a schema and stick to it. Perhaps include 5-6 custom fields for future use. So maybe do this:
         fields=['','','','','','','','','','']
