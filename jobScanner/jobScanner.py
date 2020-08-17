@@ -117,7 +117,7 @@ def loop_control():
     reply = input ("Would you like to apply for another job? (y/n)")
     
     if reply == "y":
-        continue
+        continue                              #WARNING!!! This function may not work. Can you continue global loop locally from within a function?
     else:
         print ("Have a good day and good luck on your job search!"); time.sleep(3)
         sys.exit("Exit application")
