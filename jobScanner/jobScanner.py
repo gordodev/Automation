@@ -6,6 +6,8 @@
 
 import csv
 import time
+import sys
+import os
 
 '''
 Workflow:
@@ -56,9 +58,8 @@ VARIABLES:
 
 #------------------------------------------------------------------ FUNCTIONS
 
+
 def load_skills():
-    #############                Load job skills CSV into variable
-    #mySkills.csv
     '''
     Load skills from CSV file into a dict called mySkills.
 
@@ -66,94 +67,117 @@ def load_skills():
 
     '''
 
-    print ("*** Loading skills ***"); time.sleep(2)
+    print ("*** Loading skills ***"); time.sleep(.7)
     global mySkills
+    
     with open('mySkills.csv', mode='r') as infile:
         reader = csv.reader(infile)
         mySkills = {rows[0]:rows[1] for rows in reader}
-        #print (mySkills)
+        #print (mySkills)                             #QA
     
-    print ("*** Skills loaded ***\n"); time.sleep(2)
+    print ("*** Skills loaded ***\n"); time.sleep(.7)
+
 
 def load_job():
-    #########                   Load job description into dictionary called job{}
-    print ("*** Loading Job  ***"); time.sleep(2)
+    '''
+    Load job description into dictionary called job{}.
+
+            File: mySkilles.csv
+            #Iterate through skills list
+            #count each skill
+            #append to job{} dict (only has matched skills)
+            #count and return the total skills score
+
+    '''
+    print ("*** Loading Job  ***"); time.sleep(.7)
+    
     global job; global jobScore
     job = {}
     pass 
-    #Iterate through skills list
-    #count each skill
-    #append to job{} dict (only has matched skills)
-    #count and return the total skills score
-    jobScore = 20               #QA Hard coding score until score logic is built
     
-    print ("*** Job Loaded ***\n"); time.sleep(2)
+    jobScore = 2               #QA Hard coding score until score logic is built
+    
+    print ("*** Job Loaded ***\n"); time.sleep(.7)
     return jobScore
     
 
 def load_resume():
-    #########                  Load job history from resume into list called resume[]
-    print ("*** Loading resume ***"); time.sleep(2)
+    '''
+    Load job history from resume into list called resume[].
+
+            parse resume for years, companies and skills
+            create list of lists: resume[]
+
+    '''    
+    print ("*** Loading resume ***"); time.sleep(.7)
+
     global resume
-    #parse resume for years, companies and skills
-    #create list of lists: resume[]
     
-    print ("*** Resume Loaded ***\n")
+    print ("*** Resume Loaded ***\n"); time.sleep(.7)
+
 
 def write_letter():
-    #########                  Write response letter (respond to job post)
-    print ("*** Writing letter ***"); time.sleep(2)
-    #Iterate through matched skills list
-    #Search each job for skills
-    #where skill exists, get company/year
-    #create response letter
-    #Print letter
+    '''
+    Write response letter (respond to job post).
 
-    print ("***Letter written***\n"); time.sleep(2)
+            Iterate through matched skills list
+            Search each job for skills
+            where skill exists, get company/year
+            create response letter
+            Print letter
 
-def loop_control():
-    #########                 Allow user to scan another job or exit
+    '''
+    print ("*** Writing letter ***"); time.sleep(.7)
+
+    print ("***Letter written***\n"); time.sleep(.7)
+
+
+def door():
+    '''
+    Allow user to scan another job or exit.
+
+            n=exit
+            otherwise, loop will continue as normal. Should iterate.
+
+    '''   
     global reply
+
     reply = input ("Would you like to apply for another job? (y/n)")
     
-    if reply == "y":
-        continue                              #WARNING!!! This function may not work. Can you continue global loop locally from within a function?
-    else:
-        print ("Have a good day and good luck on your job search!"); time.sleep(3)
-        sys.exit("Exit application")
+    if reply == "n":
+        sys.exit("Have a good day and good luck on your job search!"); time.sleep(3)                              
 
 #___________________________________________________________________________________________ FUNCTIONS
 
 #MAIN:
 
 load_skills()
-print (mySkills,"\n")  #QA
+print (mySkills,"\n") ; time.sleep(1) #QA
+os.system('clear')
 
 #Job Scanner loop:
 while True:
-    print ("Beginning Job scan\n\n"); time.sleep(2)
+    print ("Beginning Job scan\n\n"); time.sleep(2); os.system('clear')
+    
     load_job()                   #Load job and return score
     print ("Job Score:",jobScore)             #QA: confirm job score is returned from load_job function
 
-    #Check is job is a match or not
+    #Check if job is a match or not
     if jobScore > 15:            #True if Job is a match based on score
         load_resume()
         write_letter()
-        loop_control()
+        door()
 
     if jobScore < 16:            #True if job not match; lets user respond anyway or scan another job
         reply = input ("Job does not appear to be a good match!\n\nDo you want to apply for this job anyway? (y/n)")
         if reply == "y":     #Apply for job anyway, even though job was not a match
             load_resume()
             write_letter()
+            door()
+        
         else:
-            reply = input ("Would you like to apply for another job? (y/n)")
-            if reply == "y":
-                continue
-            else:
-                print ("Have a good day and good luck on your job search!"); time.sleep(3)
-                sys.exit("Exit application") 
+            door()
+
 
 print ("Reached end of program!")
 
-#Last line added
