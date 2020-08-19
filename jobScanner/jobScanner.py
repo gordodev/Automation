@@ -87,6 +87,7 @@ def load_job():
             #count each skill
             #append to job{} dict (only has matched skills)
             #count and return the total skills score
+            #8/18/20
 
     '''
     print ("*** Loading Job  ***"); time.sleep(.7)
