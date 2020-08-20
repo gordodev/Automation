@@ -97,7 +97,7 @@ def load_job():
     global job; global jobScore
     job = {}
     
-    jobScore = 2               #QA Hard coding score until score logic is built
+    #jobScore = 2               #QA Hard coding score until score logic is built
    
     with open ('job.txt', 'r') as file:
         jobSource = file.read().lower()     #Read job description into variable 'data'
@@ -105,14 +105,16 @@ def load_job():
 
     #QA-
     for skill in mySkills:
-        count=jobSource.count(skill)
+        count=jobSource.count(skill)             #Count skill
         if count == 0:
-            continue
+            continue                             #Go to next skill if not found
 
-        rate = int((mySkills[skill]))            #Rate for the skill
+        rate = int((mySkills[skill]))            #Rate for the skill; value in dict
         countTotal = count * rate
-        print (rate)
-        print ("Skill: ",skill,"Count: ",countTotal) #QA
+        jobScore += countTotal                   #Sum of all skill's scores
+        
+        #print (rate)
+        #print ("Skill: ",skill,"Count: ",countTotal) #QA
 
 
     #QA-
@@ -171,6 +173,8 @@ def door():
 
 #MAIN:
 
+jobScore=0
+
 load_skills()
 print (mySkills,"\n") ; time.sleep(1) #QA
 os.system('clear')
@@ -183,7 +187,8 @@ while True:
     print ("Job Score:",jobScore)             #QA: confirm job score is returned from load_job function
 
     #Check if job is a match or not
-    if jobScore > 15:            #True if Job is a match based on score
+    if jobScore > 17:            #True if Job is a match based on score
+        print ("Congrats! This job looks like a good match for your background!\n\n"); time.sleep(1)
         load_resume()
         write_letter()
         door()
