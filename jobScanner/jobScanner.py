@@ -112,9 +112,8 @@ def load_job():
         rate = int((mySkills[skill]))            #Rate for the skill
         countTotal = count * rate
         print (rate)
-        print ("Skill: ",skill,"Count: ",countTotal)
+        print ("Skill: ",skill,"Count: ",countTotal) #QA
 
-        print ("Rate is a",type(rate),"Count is a",type(count))#QA Debug
 
     #QA-
 
