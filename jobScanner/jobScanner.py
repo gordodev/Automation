@@ -87,8 +87,8 @@ def load_job():
             File: mySkilles.csv
             #[x] Iterate through skills list
             #[x] count each skill
-            #[] append to job{} dict (only has matched skills)
-            #[] count and return the total skills score
+            #[x] append to job{} dict (only has matched skills)
+            #[x] count and return the total skills score
             #8/18/20
 
     '''
@@ -96,8 +96,7 @@ def load_job():
     
     global job; global jobScore
     job = {}
-    
-    #jobScore = 2               #QA Hard coding score until score logic is built
+    jobScore=0
    
     with open ('job.txt', 'r') as file:
         jobSource = file.read().lower()     #Read job description into variable 'data'
@@ -112,7 +111,8 @@ def load_job():
         rate = int((mySkills[skill]))            #Rate for the skill; value in dict
         countTotal = count * rate
         jobScore += countTotal                   #Sum of all skill's scores
-        
+        job.update({skill : countTotal})
+        #print (job)           #QA
         #print (rate)
         #print ("Skill: ",skill,"Count: ",countTotal) #QA
 
@@ -173,27 +173,25 @@ def door():
 
 #MAIN:
 
-jobScore=0
-
 load_skills()
-print (mySkills,"\n") ; time.sleep(1) #QA
+#print (mySkills,"\n") ; time.sleep(1) #QA
 os.system('clear')
 
 #Job Scanner loop:
 while True:
-    print ("Beginning Job scan\n\n"); time.sleep(2); os.system('clear')
+    print ("Beginning Job scan\n\n"); time.sleep(2); #os.system('clear')
     
     load_job()                   #Load job and return score
     print ("Job Score:",jobScore)             #QA: confirm job score is returned from load_job function
 
     #Check if job is a match or not
-    if jobScore > 17:            #True if Job is a match based on score
+    if jobScore > 16:            #True if Job is a match based on score
         print ("Congrats! This job looks like a good match for your background!\n\n"); time.sleep(1)
         load_resume()
         write_letter()
         door()
 
-    if jobScore < 16:            #True if job not match; lets user respond anyway or scan another job
+    if jobScore < 17:            #True if job not match; lets user respond anyway or scan another job
         reply = input ("Job does not appear to be a good match!\n\nDo you want to apply for this job anyway? (y/n)")
         if reply == "y":     #Apply for job anyway, even though job was not a match
             load_resume()
