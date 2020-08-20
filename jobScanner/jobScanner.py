@@ -100,24 +100,18 @@ def load_job():
    
     with open ('job.txt', 'r') as file:
         jobSource = file.read().lower()     #Read job description into variable 'data'
-    #print (data)
 
-    #QA-
     for skill in mySkills:
-        count=jobSource.count(skill)             #Count skill
+        count=jobSource.count(skill)             #Count skill. NOTE: update so count is an OR. Count UNIX OR Linux OR redhat. Nested?
         if count == 0:
             continue                             #Go to next skill if not found
 
+        print ("Found",skill); time.sleep(0.6)
         rate = int((mySkills[skill]))            #Rate for the skill; value in dict
-        countTotal = count * rate
+        countTotal = count * rate; print ("    Score: ",countTotal); time.sleep(0.3)
         jobScore += countTotal                   #Sum of all skill's scores
         job.update({skill : countTotal})
-        #print (job)           #QA
-        #print (rate)
-        #print ("Skill: ",skill,"Count: ",countTotal) #QA
 
-
-    #QA-
 
     print ("*** Job Loaded ***\n"); time.sleep(.7)
     return jobScore
