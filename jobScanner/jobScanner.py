@@ -21,7 +21,7 @@ Setup:
 
 Prepare job description for loading:
  - [ ]  Remove non alpha
- - [ ]  Lowercase all
+ - [x]  Lowercase all
  - [ ]  Load job description into list
  - [ ]  Count skills, using skills.csv for the skills to look for
  - [ ]  Pass or Fail job description
@@ -41,8 +41,10 @@ Task list:
  - [ ]  CODE: Rank job vs skills
  - [ ]  CODE: If pass: get skills, dates & comps from resume
 
+FILES:
 
-#mySkills.csv: File with user's skills
+mySkills.csv: File with user's skills
+job.txt:      File with job description  
 
 DATA STRUCTURES:
 
@@ -83,10 +85,10 @@ def load_job():
     Load job description into dictionary called job{}.
 
             File: mySkilles.csv
-            #Iterate through skills list
-            #count each skill
-            #append to job{} dict (only has matched skills)
-            #count and return the total skills score
+            #[x] Iterate through skills list
+            #[x] count each skill
+            #[] append to job{} dict (only has matched skills)
+            #[] count and return the total skills score
             #8/18/20
 
     '''
@@ -94,10 +96,28 @@ def load_job():
     
     global job; global jobScore
     job = {}
-    pass 
     
     jobScore = 2               #QA Hard coding score until score logic is built
-    
+   
+    with open ('job.txt', 'r') as file:
+        jobSource = file.read().lower()     #Read job description into variable 'data'
+    #print (data)
+
+    #QA-
+    for skill in mySkills:
+        count=jobSource.count(skill)
+        if count == 0:
+            continue
+
+        rate = int((mySkills[skill]))            #Rate for the skill
+        countTotal = count * rate
+        print (rate)
+        print ("Skill: ",skill,"Count: ",countTotal)
+
+        print ("Rate is a",type(rate),"Count is a",type(count))#QA Debug
+
+    #QA-
+
     print ("*** Job Loaded ***\n"); time.sleep(.7)
     return jobScore
     
