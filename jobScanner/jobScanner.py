@@ -112,8 +112,24 @@ def load_job():
         jobScore += countTotal                   #Sum of all skill's scores
         job.update({skill : countTotal})
 
+    time.sleep(2); os.system('clear')
+    job_sorted = sorted(job.items(), key=lambda x: x[1], reverse=True)   #Sort by scores
 
-    print ("*** Job Loaded ***\n"); time.sleep(.7)
+    #Display scores for top 5 skills:
+    displayMax=4; displayC=0
+
+    print ("Most popular skills found (Skill/Score):\n__________________________\n")
+
+    for i in job_sorted:
+        displayC+=1
+        if displayC < 5:
+            print (i[0], i[1])
+        else:
+            break
+
+    #print (job_sorted)
+
+    print ("\n*** Job Loaded ***\n"); time.sleep(.7)
     return jobScore
     
 
@@ -145,7 +161,7 @@ def write_letter():
     '''
     print ("*** Writing letter ***"); time.sleep(.7)
 
-    print ("***Letter written***\n"); time.sleep(.7)
+    print ("*** Letter written ***\n"); time.sleep(.7)
 
 
 def door():
