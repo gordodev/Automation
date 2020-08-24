@@ -92,6 +92,16 @@ def load_job():
             #8/18/20
 
     '''
+    try:                         # Make sure file exist
+        f = open('Xjob.txt', 'r')
+        #print(f.read())
+        f.close()
+    except IOError:
+        print('file not found')
+        #Exit program
+        sys.exit("!!!  Make sure job.txt is in local folder   !!!"); time.sleep(3)
+
+
     print ("*** Loading Job  ***"); time.sleep(.7)
     
     global job; global jobScore
