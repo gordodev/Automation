@@ -92,24 +92,33 @@ def load_job():
             #8/18/20
 
     '''
-    try:                         # Make sure file exist
-        f = open('Xjob.txt', 'r')
-        #print(f.read())
+    try:                                          # Make sure file exist
+        f = open('job.txt', 'r')
         f.close()
     except IOError:
-        print('file not found')
+        print('file not found\n')
         #Exit program
         sys.exit("!!!  Make sure job.txt is in local folder   !!!"); time.sleep(3)
-
 
     print ("*** Loading Job  ***"); time.sleep(.7)
     
     global job; global jobScore
     job = {}
     jobScore=0
+    found=0                                     #How many time have you found skill so far
    
     with open ('job.txt', 'r') as file:
-        jobSource = file.read().lower()     #Read job description into variable 'data'
+        jobSource = file.read().lower()          #Read job description into variable 'jobSource'
+
+
+
+
+
+##      >>>>>      find way to switch from primary rate to secondary rate. Trigger by if count greater than 2, score equals full rate*2+((totalCount-2)*2)# Something like this.
+
+
+
+
 
     for skill in mySkills:
         count=jobSource.count(skill)             #Count skill. NOTE: update so count is an OR. Count UNIX OR Linux OR redhat. Nested?
